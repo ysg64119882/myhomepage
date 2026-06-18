@@ -16,6 +16,8 @@
             --header-text: #ffffff;
             --accent-color: #3182ce;
             --accent-hover: #2b6cb0;
+            --game-color: #dd6b20;
+            --game-hover: #c05621;
             --border-color: #e2e8f0;
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             --transition-speed: 0.3s;
@@ -32,6 +34,8 @@
             --header-text: #f0f6fc;
             --accent-color: #58a6ff;
             --accent-hover: #79c0ff;
+            --game-color: #f6ad55;
+            --game-hover: #f69b2f;
             --border-color: #30363d;
             --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
@@ -77,46 +81,54 @@
         }
 
         header p {
-            margin: 0.5rem 0 0;
+            margin: 0.5rem 0 1.5rem;
             opacity: 0.8;
             font-size: 1.1rem;
         }
 
-        /* 테마 선택 토글 버튼 */
-        .theme-toggle-container {
-            position: absolute;
-            top: -1rem;
-            right: 1rem;
+        /* 액션 컨트롤 영역 (테마 및 게임 바로가기) */
+        .header-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
         }
 
-        @media (max-width: 640px) {
-            .theme-toggle-container {
-                position: relative;
-                top: 0;
-                right: 0;
-                margin-top: 1rem;
-                display: flex;
-                justify-content: center;
-            }
+        .theme-btn, .game-btn {
+            color: var(--header-text);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-decoration: none;
+            transition: all var(--transition-speed) ease;
         }
 
         .theme-btn {
             background-color: rgba(255, 255, 255, 0.15);
-            color: var(--header-text);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         .theme-btn:hover {
             background-color: rgba(255, 255, 255, 0.25);
+        }
+
+        /* 게임 버튼은 오렌지 계열 포인트 컬러 지정 */
+        .game-btn {
+            background-color: var(--game-color);
+            border-color: transparent;
+        }
+
+        .game-btn:hover {
+            background-color: var(--game-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
 
         body.dark-theme .theme-btn {
@@ -138,6 +150,12 @@
             border-radius: 12px;
             box-shadow: var(--shadow);
             border: 1px solid var(--border-color);
+        }
+
+        /* 게임 전용 피처 카드 스타일 */
+        .game-card {
+            border-left: 5px solid var(--game-color);
+            background: linear-gradient(145deg, var(--card-bg), var(--bg-color));
         }
 
         .post-title {
@@ -177,6 +195,15 @@
             text-decoration: underline;
         }
 
+        /* 게임 시작 링크 특별 스타일 */
+        .play-now {
+            color: var(--game-color);
+            font-size: 1.1rem;
+        }
+        .play-now:hover {
+            color: var(--game-hover);
+        }
+
         /* 푸터 스타일 */
         footer {
             text-align: center;
@@ -196,16 +223,34 @@
             <h1>안녕하세요, 윤석규 HOME</h1>
             <p>생각과 일상을 기록하는 공간</p>
             
-            <div class="theme-toggle-container">
+            <!-- 액션 버튼 컨테이너 -->
+            <div class="header-actions">
                 <button id="themeToggle" class="theme-btn" aria-label="테마 전환 버튼">
                     <span id="themeIcon">🌙</span> 
                     <span id="themeText">Black 모드</span>
                 </button>
+                <a href="racoon/index.html" class="game-btn">
+                    <span>🦝</span>
+                    <span>너구리 게임 시작</span>
+                </a>
             </div>
         </div>
     </header>
 
     <div class="container">
+        <!-- 너구리 게임 피처 카드 추가 -->
+        <article class="post game-card">
+            <h2 class="post-title">🦝 미니 게임: 너구리 (Racoon Game)</h2>
+            <div class="post-meta">
+                <span>🎮 장르: 아케이드</span>
+                <span>🔥 인기 콘텐츠</span>
+            </div>
+            <div class="post-content">
+                <p>윤석규 HOME에서 준비한 특별한 미니 게임입니다! 귀여운 너구리와 함께 모험을 떠나보세요. 아래 링크 또는 헤더의 버튼을 누르면 언제든지 게임을 바로 시작할 수 있습니다.</p>
+            </div>
+            <a href="racoon/index.html" class="read-more play-now">게임 플레이하기 →</a>
+        </article>
+
         <article class="post">
             <h2 class="post-title">첫 번째 블로그 포스트</h2>
             <div class="post-meta">
