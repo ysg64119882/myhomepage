@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>안녕하세요, 윤석규 HOME</title>
+    <style>
+        /* 테마 시스템 변수 정의 */
+        :root {
+            --bg-color: #f7fafc;
+            --card-bg: #ffffff;
+            --primary-color: #2d3748;
+            --text-color: #333333;
+            --text-muted: #718096;
+            --header-bg: #2d3748;
+            --header-text: #ffffff;
+            --accent-color: #3182ce;
+            --accent-hover: #2b6cb0;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            --transition-speed: 0.3s;
+        }
+
+        /* 블랙 테마 정의 */
+        body.dark-theme {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --primary-color: #f0f6fc;
+            --text-color: #c9d1d9;
+            --text-muted: #8b949e;
+            --header-bg: #010409;
+            --header-text: #f0f6fc;
+            --accent-color: #58a6ff;
+            --accent-hover: #79c0ff;
+            --border-color: #30363d;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 기본 스타일 초기화 및 레이아웃 */
+        * {
+            box-sizing: border-box;
+            transition: background-color var(--transition-speed) ease, 
+                        color var(--transition-speed) ease, 
+                        border-color var(--transition-speed) ease, 
+                        box-shadow var(--transition-speed) ease;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 헤더 스타일 */
+        header {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            padding: 2.5rem 1rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .header-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+        }
+
+        header p {
+            margin: 0.5rem 0 0;
+            opacity: 0.8;
+            font-size: 1.1rem;
+        }
+
+        /* 테마 선택 토글 버튼 */
+        .theme-toggle-container {
+            position: absolute;
+            top: -1rem;
+            right: 1rem;
+        }
+
+        @media (max-width: 640px) {
+            .theme-toggle-container {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-top: 1rem;
+                display: flex;
+                justify-content: center;
+            }
+        }
+
+        .theme-btn {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: var(--header-text);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .theme-btn:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+
+        body.dark-theme .theme-btn {
+            background-color: rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* 컨테이너 및 카드 레이아웃 */
+        .container {
+            max-width: 800px;
+            margin: 2.5rem auto;
+            padding: 0 1.25rem;
+        }
+
+        .post {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .post-title {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        .post-meta {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .post-content {
+            margin-bottom: 1.75rem;
+            font-size: 1.05rem;
+            color: var(--text-color);
+        }
+
+        .read-more {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .read-more:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+
+        /* 푸터 스타일 */
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <h1>안녕하세요, 윤석규 HOME</h1>
+            <p>생각과 일상을 기록하는 공간</p>
+            
+            <div class="theme-toggle-container">
+                <button id="themeToggle" class="theme-btn" aria-label="테마 전환 버튼">
+                    <span id="themeIcon">🌙</span> 
+                    <span id="themeText">Black 모드</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <article class="post">
+            <h2 class="post-title">첫 번째 블로그 포스트</h2>
+            <div class="post-meta">
+                <span>📅 작성일: 2026-06-04</span>
+                <span>🏷️ 카테고리: 일상</span>
+            </div>
+            <div class="post-content">
+                <p>안녕하세요. 윤석규 HOME에 오신 것을 환영합니다! 이곳에는 앞으로 다양한 일상 기록과 유용한 정보들을 채워나갈 예정입니다. 심플하면서도 가독성 높은 디자인으로 구성해 보았습니다.</p>
+            </div>
+            <a href="#" class="read-more">더 보기 →</a>
+        </article>
+
+        <article class="post">
+            <h2 class="post-title">두 번째 블로그 포스트</h2>
+            <div class="post-meta">
+                <span>📅 작성일: 2026-06-03</span>
+                <span>🏷️ 카테고리: 정보</span>
+            </div>
+            <div class="post-content">
+                <p>웹 페이지를 만드는 것은 생각보다 간단합니다. HTML로 뼈대를 만들고, CSS로 스타일을 입히면 나만의 멋진 공간이 완성됩니다. 앞으로 더 많은 팁을 공유하겠습니다.</p>
+            </div>
+            <a href="#" class="read-more">더 보기 →</a>
+        </article>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 윤석규 HOME. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggleBtn = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+            const themeText = document.getElementById('themeText');
+            
+            // 사용자의 이전 테마 선택 또는 시스템 설정 불러오기
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            // 다크 모드(블랙) 상태 설정 함수
+            function setDarkTheme(isDark) {
+                if (isDark) {
+                    document.body.classList.add('dark-theme');
+                    themeIcon.textContent = '☀️';
+                    themeText.textContent = 'Light 모드';
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    document.body.classList.remove('dark-theme');
+                    themeIcon.textContent = '🌙';
+                    themeText.textContent = 'Black 모드';
+                    localStorage.setItem('theme', 'light');
+                }
+            }
+
+            // 초기 테마 설정 적용
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                setDarkTheme(true);
+            } else {
+                setDarkTheme(false);
+            }
+
+            // 테마 변경 버튼 클릭 이벤트 리스너
+            themeToggleBtn.addEventListener('click', () => {
+                const isCurrentlyDark = document.body.classList.contains('dark-theme');
+                setDarkTheme(!isCurrentlyDark);
+            });
+        });
+    </script>
+</body>
+</html>
